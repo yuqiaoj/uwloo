@@ -6,8 +6,8 @@ import { useLazyQuery, gql } from "@apollo/client";
 import Header from './components/Header/Header';
 import List from './components/List/List';
 import Map from './components/Map/Map';
-import OptQuery from './components/api/OptQuery'
-import Query from './components/api/Query'
+import OptQuery from './components/api/OptQuery';
+import Query from './components/api/Query';
 
 
 const App = () => {

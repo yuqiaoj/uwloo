@@ -11,6 +11,12 @@ const Map = ({ setCoordinates, coordinates, defaultCoordinates, loos, setChildCl
     const classes = useStyles();
     // const isDesktop = useMediaQuery('(min-width:600px)');
 
+    const Marker = () => {
+        return <div className={classes.markerContainer}>
+            <WcIcon color="primary" fontSize="large" />
+        </div>
+    }
+
     return (
         <div className={classes.mapContainer}>
             <GoogleMapReact
@@ -19,21 +25,21 @@ const Map = ({ setCoordinates, coordinates, defaultCoordinates, loos, setChildCl
                 center={coordinates}
                 defaultZoom={17}
                 margin={[50, 50, 50, 50]}
-            // options={''}
-            /* onChange={(e) => {
-                setCoordinates({ lat: e.center.lat, lng: e.center.lng })
-            }} */
-            onChildClick={(child) => {setChildClicked(child)}}
+                // options={''}
+                /* onChange={(e) => {
+                    setCoordinates({ lat: e.center.lat, lng: e.center.lng })
+                }} */
+                onChildClick={(child) => { setChildClicked(child) }}
             >
                 {loos?.map((loo) => (
-                    <div
+                    <Marker
                         className={classes.markerContainer}
                         lat={loo.lat}
                         lng={loo.lng}
                         key={loo.id}
                     >
                         <WcIcon color="primary" fontSize="large" />
-                    </div>
+                    </Marker>
                 ))}
             </GoogleMapReact>
         </div>

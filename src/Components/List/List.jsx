@@ -35,7 +35,7 @@ const List = ({ options, loos, childClicked, isLoading, searchVal, setSearchVal,
                             id="combo-box"
                             freeSolo
                             autoComplete
-                            options={options}
+                            options={options ?? []}
                             value={searchVal}
                             disabled={options ? false : true}
                             onChange={(_, value) => { setSearchVal(value ?? "") }}
