@@ -1,21 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { CssBaseline, Grid } from '@material-ui/core';
 
+import { useLazyQuery, gql } from "@apollo/client";
+
 import Header from './components/Header/Header';
 import List from './components/List/List';
 import Map from './components/Map/Map';
+import OptQuery from './components/api/OptQuery'
+import Query from './components/api/Query'
 
-import { useQuery, gql } from '@apollo/client';
-
-const myQuery = gql`{
-    loos(order_by: {name: asc}) {
-      id
-      lat
-      lng
-      name
-      tags
-    }
-}`
 
 const App = () => {
 
@@ -25,12 +18,19 @@ const App = () => {
 
     const [isLoading, setIsLoading] = useState(false);
 
-    const { loading, error, data } = useQuery(myQuery);
-    const loos = data?.loos;
+    const [searchVal, setSearchVal] = useState("");
+    const [sortBy, setSortBy] = useState("asc");
+
+    const options = OptQuery();
+    const [search, { loading, error, data }] = Query();
 
     useEffect(() => {
-        loading ? setIsLoading(true) : setIsLoading(false);
+        (loading) ? setIsLoading(true) : setIsLoading(false);
     }, [loading]);
+
+    useEffect(() => {
+        search({ variables: { name: sortBy, _ilike: `%${searchVal}%` } });
+    }, [sortBy, searchVal]);
 
     /* useEffect(() => {
         console.log(coordinates);
@@ -43,16 +43,21 @@ const App = () => {
             <Grid container spacing={3} style={{ width: '100%' }}>
                 <Grid item xs={12} md={4}>
                     <List
-                        loos={loos}
+                        options={options}
+                        loos={data?.loos}
                         childClicked={childClicked}
                         isLoading={isLoading}
+                        searchVal={searchVal}
+                        setSearchVal={setSearchVal}
+                        sortBy={sortBy}
+                        setSortBy={setSortBy}
                     />
                 </Grid>
                 <Grid item xs={12} md={8}>
                     <Map
                         setCoordinates={setCoordinates}
                         coordinates={coordinates}
-                        loos={loos}
+                        loos={data?.loos}
                         setChildClicked={setChildClicked}
                     />
                 </Grid>

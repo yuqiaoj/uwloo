@@ -6,44 +6,20 @@ import SearchIcon from '@material-ui/icons/Search'
 import LooDetails from '../LooDetails/LooDetails';
 import useStyles from './styles';
 
-const List = ({ loos, childClicked, isLoading }) => {
+const List = ({ options, loos, childClicked, isLoading, searchVal, setSearchVal, sortBy, setSortBy }) => {
     const classes = useStyles();
-    const [sortBy, setSortBy] = useState('nameAsc');
-    const [searchVal, setSearchVal] = useState("");
-    const options = loos?.map(({ name }) => name);
 
     const [elRefs, setElRefs] = useState([]);
 
-    useEffect(() => {
-        setElRefs((refs) => Array(loos?.length).fill().map((_, i) => refs[i] || createRef()));
-        console.log(elRefs);
-    }, [loos])
-
-    const sortFunction = (loo1, loo2) => {
-        switch (sortBy) {
-            case 'nameAsc':
-                return 1; // loos is already sorted by the API
-            case 'nameDesc':
-                return -1;
-            case 'rateAsc':
-                return 0; // TODO
-            case 'rateDesc':
-                return 0;
-            default:
-                return 0;
-        }
-    }
-
-    const onChange = (_, value) => {
-        setSearchVal(value ?? "");
-        console.log(value);
-
-        /* const latitude = value.lat;
+    /* const latitude = value.lat;
         const longitude = value.lng;
 
         setCoordinates({ lat: latitude, lng: longitude });
         console.log({ latitude, longitude }); */
-    }
+
+    useEffect(() => {
+        setElRefs((refs) => Array(loos?.length).fill().map((_, i) => refs[i] || createRef()));
+    }, [loos])
 
     return (
         <div className={classes.container}>
@@ -57,30 +33,30 @@ const List = ({ loos, childClicked, isLoading }) => {
                         <SearchIcon color="primary" />
                         <Autocomplete
                             id="combo-box"
-                            disabled={loos ? false : true}
-                            options={options}
                             freeSolo
+                            autoComplete
+                            options={options}
+                            value={searchVal}
+                            disabled={options ? false : true}
+                            onChange={(_, value) => { setSearchVal(value ?? "") }}
+                            style={{ width: '100%', paddingLeft: '10px' }}
                             renderInput={(params) => <TextField {...params}
                                 variant="outlined"
-                                label={loos ? "" : "Error: no buildings found"}
+                                label={options ? "" : "Error: no buildings found"}
                             />}
-                            onChange={onChange}
-                            style={{ width: '100%', paddingLeft: '10px' }}
                         />
                     </Box>
                     <FormControl className={classes.formControl}>
                         <InputLabel> Sort by </InputLabel>
                         <Select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
-                            <MenuItem value="nameAsc">Name (Ascending)</MenuItem>
-                            <MenuItem value="nameDesc">Name (Descending)</MenuItem>
-                            <MenuItem value="rateAsc">rateAsc</MenuItem>
-                            <MenuItem value="rateDesc">rateDesc</MenuItem>
+                            <MenuItem value="asc">Name (Ascending)</MenuItem>
+                            <MenuItem value="desc">Name (Descending)</MenuItem>
+                            {/* <MenuItem value="asc">rateAsc</MenuItem>
+                            <MenuItem value="desc">rateDesc</MenuItem> */}
                         </Select>
                     </FormControl>
                     <Grid container spacing={3} className={classes.list}>
-                        {loos?.filter((loo) => (
-                            loo.name.toLowerCase().includes(searchVal.toLowerCase())
-                        )).sort(sortFunction).map((loo, i) => (
+                        {loos?.map((loo, i) => (
                             <Grid ref={elRefs[i]} item key={loo.id} xs={12}>
                                 <LooDetails
                                     loo={loo}
