@@ -20,4 +20,4 @@ Database hosted on Heroku and accessed using GraphQL through Hasura.
 
 ## Special Thanks
 
-Huge thank you to [Adrian Hajdin](https://github.com/adrianhajdin) from JavaScript Mastery and [Sez](https://github.com/sezgi) from [Hasura](https://github.com/hasura) for the amazing resources! This project would not have been possible without them.
+A huge thank you to [Adrian Hajdin](https://github.com/adrianhajdin) from JavaScript Mastery and [Sez](https://github.com/sezgi) from [Hasura](https://github.com/hasura) for the amazing resources! This project would not have been possible without them.
