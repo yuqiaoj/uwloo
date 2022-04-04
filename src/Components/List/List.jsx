@@ -42,7 +42,7 @@ const List = ({ options, loos, childClicked, isLoading, searchVal, setSearchVal,
                             style={{ width: '100%', paddingLeft: '10px' }}
                             renderInput={(params) => <TextField {...params}
                                 variant="outlined"
-                                label={options ? "" : "Error: no buildings found"}
+                                label={options ? "" : "No autofill options found"}
                             />}
                         />
                     </Box>
@@ -57,7 +57,7 @@ const List = ({ options, loos, childClicked, isLoading, searchVal, setSearchVal,
                     </FormControl>
                     <Grid container spacing={3} className={classes.list}>
                         {loos?.map((loo, i) => (
-                            <Grid ref={elRefs[i]} item key={loo.id} xs={12}>
+                            <Grid item ref={elRefs[i]} key={loo.id} xs={12}>
                                 <LooDetails
                                     loo={loo}
                                     selected={childClicked === loo.id}

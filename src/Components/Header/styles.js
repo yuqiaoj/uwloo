@@ -8,9 +8,12 @@ export default makeStyles((theme) => ({
     },
   },
   toolbar: {
-    display: 'flex', 
+    display: 'flex',
     justifyContent: 'space-between',
     height: '80px',
     maxHeight: '80px',
+  },
+  icon: {
+    color: theme.palette.warning.main,
   },
 }));

@@ -6,9 +6,10 @@ import { useLazyQuery, gql } from "@apollo/client";
 import Header from './components/Header/Header';
 import List from './components/List/List';
 import Map from './components/Map/Map';
-import OptQuery from './components/api/OptQuery';
-import Query from './components/api/Query';
+import OptQuery from './api/OptQuery';
+import Query from './api/Query';
 
+import DialogBox from './components/DialogBox/DialogBox';
 
 const App = () => {
 
@@ -17,6 +18,8 @@ const App = () => {
     const [childClicked, setChildClicked] = useState(null);
 
     const [isLoading, setIsLoading] = useState(false);
+
+    const [open, setOpen] = useState(true);
 
     const [searchVal, setSearchVal] = useState("");
     const [sortBy, setSortBy] = useState("asc");
@@ -39,7 +42,8 @@ const App = () => {
     return (
         <>
             <CssBaseline />
-            <Header />
+            <DialogBox open={open} setOpen={setOpen} />
+            <Header setOpen={setOpen} />
             <Grid container spacing={3} style={{ width: '100%' }}>
                 <Grid item xs={12} md={4}>
                     <List

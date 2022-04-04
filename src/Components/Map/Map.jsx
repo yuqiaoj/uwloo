@@ -5,7 +5,7 @@ import WcIcon from '@material-ui/icons/Wc';
 import Rating from '@material-ui/lab';
 
 import useStyles from './styles';
-import { Place } from '@material-ui/icons';
+import mapStyles from './mapStyles';
 
 const Map = ({ setCoordinates, coordinates, defaultCoordinates, loos, setChildClicked }) => {
     const classes = useStyles();
@@ -25,10 +25,10 @@ const Map = ({ setCoordinates, coordinates, defaultCoordinates, loos, setChildCl
                 center={coordinates}
                 defaultZoom={17}
                 margin={[50, 50, 50, 50]}
-                // options={''}
+                options={{ styles: mapStyles }}
                 /* onChange={(e) => {
-                    setCoordinates({ lat: e.center.lat, lng: e.center.lng })
-                }} */
+                setCoordinates({ lat: e.center.lat, lng: e.center.lng })
+            }} */
                 onChildClick={(child) => { setChildClicked(child) }}
             >
                 {loos?.map((loo) => (
@@ -42,7 +42,7 @@ const Map = ({ setCoordinates, coordinates, defaultCoordinates, loos, setChildCl
                     </Marker>
                 ))}
             </GoogleMapReact>
-        </div>
+        </div >
     );
 }
 
