@@ -16,7 +16,7 @@ Built using React using JavaScript, HTML, and CSS, visual components created usi
 
 ## Backend
 
-Database hosted on Heroku and accessed using GraphQL through Hasura.
+Map built using React Google Maps API. Database hosted on Heroku and accessed using a GraphQL API through Hasura.
 
 ## Special Thanks
 
