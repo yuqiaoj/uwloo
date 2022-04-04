@@ -12,7 +12,7 @@ This is my first fullstack project! It's a silly idea, but I think it could defi
 
 ## Frontend
 
-Built using React using JavaScript, HTML, and CSS, visual components created using Material-UI, and queries made with Apollo Graph Platform.
+Built using React using JavaScript, HTML, and CSS, visual components created using Material-UI V4, and queries made with Apollo Graph Platform.
 
 ## Backend
 
