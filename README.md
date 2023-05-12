@@ -1,8 +1,6 @@
-# UWLoo (Beta)
+# UWLoo 
 
-### In Development: This release of UWLoo is for development and demonstration purposes only.
-
-Planned features include rating filters, a review form for user-submitted reviews, more review information, and greater map pan control.
+Unfortunately, this website no longer works due to the discontinuation of the Heroku free tier.
 
 ## UWLoo: Rating Loos on the UW Campus
 
