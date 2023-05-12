@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.js": "/uwloo-beta/static/js/main.d870963f.js",
-    "static/media/loo-placeholder.png": "/uwloo-beta/static/media/loo-placeholder.b18e95d5de1178be9c9a.png",
-    "index.html": "/uwloo-beta/index.html",
-    "main.d870963f.js.map": "/uwloo-beta/static/js/main.d870963f.js.map"
+    "main.js": "/uwloo/static/js/main.dcc5a67a.js",
+    "static/media/loo-placeholder.png": "/uwloo/static/media/loo-placeholder.b18e95d5de1178be9c9a.png",
+    "index.html": "/uwloo/index.html",
+    "main.dcc5a67a.js.map": "/uwloo/static/js/main.dcc5a67a.js.map"
   },
   "entrypoints": [
-    "static/js/main.d870963f.js"
+    "static/js/main.dcc5a67a.js"
   ]
 }
