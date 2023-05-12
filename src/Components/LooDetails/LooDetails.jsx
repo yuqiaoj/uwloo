@@ -1,11 +1,11 @@
-import React from 'react';
-import { Box, Typography, Button, Card, CardMedia, CardContent, CardActions, Chip, Grid } from '@material-ui/core';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
-import Rating from '@material-ui/lab/Rating';
-import Reviews from '../Reviews/Reviews'
-import looPlaceholderImg from '../../images/loo-placeholder.png';
+import React from "react";
+import { Box, Typography, Button, Card, CardMedia, CardContent, CardActions, Chip, Grid } from "@material-ui/core";
+import LocationOnIcon from "@material-ui/icons/LocationOn";
+import Rating from "@material-ui/lab/Rating";
+import Reviews from "../Reviews/Reviews";
+import looPlaceholderImg from "../../images/loo-placeholder.png";
 
-import useStyles from './styles';
+import useStyles from "./styles";
 
 function LooDetails({ loo, selected, refProp }) {
   const classes = useStyles();
@@ -16,19 +16,20 @@ function LooDetails({ loo, selected, refProp }) {
 
   return (
     <Card elevation={6}>
-      <CardMedia
-        style={{ height: 150 }}
-        image={loo.photo ? loo.photo : looPlaceholderImg}
-        title={loo.name}
-      />
+      <CardMedia style={{ height: 150 }} image={loo.photo || looPlaceholderImg} title={loo.name} />
       <CardContent>
-        <Typography gutterBottom variant="h5">{loo.name}</Typography>
+        <Typography gutterBottom variant="h5">
+          {loo.name}
+        </Typography>
         <Box display="flex" justifyContent="left" alignContent="center" my={1}>
           <Typography component="legend">{loo.reviews_aggregate.aggregate.avg.rating?.toFixed(1)}</Typography>
           <Rating name="read-only" value={loo.reviews_aggregate.aggregate.avg.rating} precision={0.1} readOnly />
-          <Typography component="legend">({loo.reviews_aggregate.aggregate.count} review{!(loo.reviews_aggregate.aggregate.count == 1) && 's'})</Typography>
+          <Typography component="legend">
+            ({loo.reviews_aggregate.aggregate.count} review
+            {!(loo.reviews_aggregate.aggregate.count == 1) && "s"})
+          </Typography>
         </Box>
-        {loo.tags?.map(tag => (
+        {loo.tags?.map((tag) => (
           <Chip key={tag} size="small" label={tag} className={classes.chip} />
         ))}
         {/* {loo?.address && (
